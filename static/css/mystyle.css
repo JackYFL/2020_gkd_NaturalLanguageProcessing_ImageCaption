@@ -1,0 +1,36 @@
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background: #FCFFD9 url(../imgs/totoro.jpg) no-repeat fixed;
+    background-size: cover;
+    margin: 0 0 100px;
+    padding: 25px;
+}
+
+footer {
+    background: transparent;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 75px;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    color: slategray;
+    border-top: 1px solid #D2D8DE;
+
+}
+
+nav {
+    margin: -25px -25px 0;
+}
+
+
+
+
+
+

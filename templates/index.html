@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <style>
+
+        #image_placeholder {
+            width: 100%;
+            height: 262px;
+            background-color: rgba(255,255,255,0.5);
+        {#margin-top: 10px;#} margin-top: 40px;
+            border: #EFF7FF 6px outset;
+        }
+        #attention_image_placeholder_chs {
+            width: 100%;
+            height: 262px;
+            background-color: rgba(255,255,255,0.5);
+        {#margin-top: 10px;#} margin-top: 10px;
+            margin-bottom: 30px;
+            border: #EFF7FF 6px outset;
+        }
+        #attention_image_placeholder_eng {
+            width: 100%;
+            height: 262px;
+            background-color: rgba(255,255,255,0.5);
+        {#margin-top: 10px;#}
+        {#    margin-top: 10px;#}
+        {#    margin-bottom: 30px;#}
+            border: #EFF7FF 6px outset;
+        }
+
+        #caption_chs_placeholder {
+            width: 100%;
+            height: 211px;
+            background-color: #bfa;
+        }
+
+        #caption_eng_placeholder {
+            width: 100%;
+            height: 211px;
+            background-color: #bfa;
+        }
+
+    </style>
+
+    <div class="container">
+
+        {% if not image_show %}
+            <div class="row">
+                <div class="col-md-4">
+                    <form action="" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Upload" class="btn btn-primary btn-block">
+                    </form>
+                    <div class="card" id="image_placeholder">
+{#                        {% if flag %}#}
+{#                            <img src="{{ MEDIA_URL }}{{ image_name }}" alt="" height="250px">#}
+{#                        {% endif %}    #}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" id="attention_image_placeholder_chs">
+
+                    </div>
+                    <div class="card" id="attention_image_placeholder_eng">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="margin-bottom: 30px; margin-top: 10px">
+                        <div class="card-header" style="text-align: center; font-weight: bold">
+                            Image Caption in Chinese
+                        </div>
+                        <div class="card-body" id="caption_chs_placeholder">
+                            {#                        <h5 class="card-title">Special title treatment</h5>#}
+                            {#                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
+                            {#                        <a href="#" class="btn btn-primary">Go somewhere</a>#}
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" style="text-align: center; font-weight: bold">
+                            Image Caption in English
+                        </div>
+                        <div class="card-body" id="caption_eng_placeholder">
+                            {#                        <h5 class="card-title">Special title treatment</h5>#}
+                            {#                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
+                            {#                        <a href="#" class="btn btn-primary">Go somewhere</a>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+            <div class="row">
+                <div class="col-md-4">
+                    <form action="" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" name="upload" value="Upload" class="btn btn-primary btn-block">
+                    </form>
+                    <div class="card" id="image_placeholder">
+                        {% if flag %}
+                            <img src="{{ MEDIA_URL }}/caption_img.jpg" alt="" height="250px">
+                        {% else %}
+                            <img src="{{ MEDIA_URL }}{{ image_name }}" alt="" height="250px">
+                        {% endif %}
+                    </div>
+
+                    <form action="" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        {{caption_form.as_p }}
+                        <input type="submit" name="caption" value="Caption now!" class="btn btn-primary btn-block">
+                    </form>
+
+                </div>
+                <div class="col-md-4">
+
+                    <div class="card" id="attention_image_placeholder_chs">
+                        {% if flag %}
+                            <img src="{{ MEDIA_URL }}/attention_chs.png" alt="" height="250px">
+                        {% endif %}
+                    </div>
+                    <div class="card" id="attention_image_placeholder_eng">
+                        {% if flag %}
+                            <img src="{{ MEDIA_URL }}/attention_eng.png" alt="" height="250px">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="margin-bottom: 30px; margin-top: 10px">
+                        <div class="card-header" style="text-align: center; font-weight: bold">
+                            Image Caption in Chinese
+                        </div>
+                        <div class="card-body" id="caption_chs_placeholder">
+                            <p class="card-text">{{ caption_in_chs }}</p>
+                            {#                        <h5 class="card-title">Special title treatment</h5>#}
+                            {#                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
+                            {#                        <a href="#" class="btn btn-primary">Go somewhere</a>#}
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" style="text-align: center; font-weight: bold">
+                            Image Caption in English
+                        </div>
+                        <div class="card-body" id="caption_eng_placeholder">
+                            <p class="card-text">{{ caption_in_eng }}</p>
+                            {#                        <h5 class="card-title">Special title treatment</h5>#}
+                            {#                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
+                            {#                        <a href="#" class="btn btn-primary">Go somewhere</a>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+
+
+    </div>
+{% endblock %}
