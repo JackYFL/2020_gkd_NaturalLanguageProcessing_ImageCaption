@@ -17,6 +17,6 @@
 链接：https://pan.baidu.com/s/1Hbh62e-z3PoefckiM5t8rA 
 提取码：3atn 
 
-最后，需要在PyCharm中加载虚拟环境即可。
+最后，在PyCharm中加载虚拟环境即可。
 
 特别感谢伟哥、建国兄、硕哥和涵玉对本项目的大力帮助~
